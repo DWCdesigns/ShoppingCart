@@ -43,29 +43,33 @@ namespace ShoppingCart.Pages
 
         public async Task<IActionResult> OnPostAddItemAsync()
         {
-            // Add selected items to list
             string selected = Request.Form["cart.SelectedList"].ToString();
             string[] previous = selected.Split("|");
-            foreach(string i in previous)
+            // Add selected items to list
+            foreach (string i in previous)
             {
                 _terminal.Scan(i);
             }
-            //Let terminal calculate new total and display on the page
-            cart.Total = _terminal.Total();
-            cart.SelectedList +=  "|";
+            // removes error
+            cart.Total = await Task.Run(() =>
+             _terminal.Total()
+            );
+
+            this.cart.SelectedList += "|";
 
             Items = _terminal.items;
-
             return Page();
         }
         public async Task<IActionResult> OnPostEmptyCartAsync()
         {
             // Add selected items to list
             string selected = Request.Form["cart.SelectedList"].ToString();
-            
+
             //Let terminal calculate new total and display on the page
-            cart.Total = 0.00m;
             cart.SelectedList = "";
+            cart.Total = await Task.Run(() =>
+            _terminal.Total()
+           );
             Items = _terminal.items;
 
             return Page();
