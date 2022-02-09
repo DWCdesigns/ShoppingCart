@@ -1,0 +1,53 @@
+﻿@page
+@using ShoppingCart.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="card">
+    <div class="card-header">
+        Shopping Cart
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <ul class="list-group">
+                    @foreach (Item i in Model.Items)
+                    {
+                        <li class="list-group-item">
+                            <form method="post" asp-page-handler="AddItem">
+                                <div class="form-group">
+                                    <input type="submit" value="@i.Description" class="btn btn-primary" />
+                                    <input type="hidden" asp-for="@Model.cart.Selected" value="@i.Description" />
+                                    <input type="hidden" asp-for="@Model.cart.SelectedList" value="@Model.cart.SelectedList@i.Description" />
+                                </div>
+                            </form>
+                        </li>
+                    }
+                </ul>
+                //A $2.00 each or 4 for $7.00<br />
+                //B	$12.00<br />
+                //C	$1.25 or $6 for a six pack<br />
+                //D	$0.15<br />
+            </div>
+            <div class="col-6">
+            <div class="row">Total-$@Model.cart.Total</div>
+            <div class="row">Items
+                <ul>
+                    @{List<string> types = new List<string>() { "A", "B", "C", "D" };
+                        string[] previous = Model.cart.SelectedList.Split("|");
+                        }
+
+                    @foreach (string type in types)
+                    {
+                        var tmp = previous.Where(m => m == type);
+                            <li>@type - Quantity= @tmp.Count().ToString()</li>
+                    }
+                </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
