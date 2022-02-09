@@ -20,8 +20,8 @@ namespace ShoppingCart.Services
         //B	$12.00
         //C	$1.25 or $6 for a six pack
         //D	$0.15
-        public List<Item> scanned { get; set; } = new List<Item>(); 
-        public List<Item> items { get;  } = new List<Item>() {
+        public List<Item> scanned { get; set; } = new List<Item>();
+        public List<Item> items { get; } = new List<Item>() {
         new Item(){ Description = "A", BulkCount = 4 , Price = 2.00m , BulkPrice = 7.00m},
         new Item(){ Description = "B", Price = 12.00m },
         new Item(){ Description = "C", BulkCount = 6 , Price = 1.25m , BulkPrice = 6.00m},
@@ -74,6 +74,6 @@ namespace ShoppingCart.Services
 
 
 
-        
+
     }
 }
