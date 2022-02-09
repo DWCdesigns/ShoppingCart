@@ -19,26 +19,35 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <ul class="list-group">
-                            @foreach (Item i in Model.Items)
+                        <div class="col-12">
+                            <ul class="list-group">
+                                @foreach (Item i in Model.Items)
                             {
-                            <li class="list-group-item">
-                                <form method="post" asp-page-handler="AddItem">
-                                    <div class="form-group">
-                                        <input type="submit" value="@i.Description" class="btn btn-primary" />
-                                        <input type="hidden" asp-for="@Model.cart.Selected" value="@i.Description" />
-                                        <input type="hidden" asp-for="@Model.cart.SelectedList" value="@Model.cart.SelectedList@i.Description" />
-                                    </div>
-                                </form>
-                               @{string bulk = "1 for $" + i.Price.ToString();} 
-                                @if (i.BulkCount > 0)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <form method="post" asp-page-handler="AddItem">
+                                                <div class="form-group">
+                                                    <input type="submit" value="@i.Description" class="btn btn-primary" />
+                                                    <input type="hidden" asp-for="@Model.cart.Selected" value="@i.Description" />
+                                                    <input type="hidden" asp-for="@Model.cart.SelectedList" value="@Model.cart.SelectedList@i.Description" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-10">
+
+                                            @{string bulk = "1 for $" + i.Price.ToString();}
+                                            @if (i.BulkCount > 0)
                                 {
                                      bulk += " or " + i.BulkCount.ToString() + " for $" + i.BulkPrice.ToString();
                                 }
-                                <span>@bulk</span>
-                            </li>
+                                            <span>@bulk</span>
+                                        </div>
+                                    </div>
+                                </li>
                             }
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -49,10 +58,9 @@
         </div>
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">Total-$@Model.cart.Total</div>
+                <div class="card-header">Selected Items Total-$@Model.cart.Total</div>
                 <div class="card-body">
                     <div class="row">
-                        Items
                         <ul>
                             @{List<string> types = new List<string>() { "A", "B", "C", "D" };
                                 string[] previous = Model.cart.SelectedList.Split("|");
