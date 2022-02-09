@@ -1,0 +1,99 @@
+﻿@page
+@model ShoppingCart.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h3">Assignment</h1>
+        </div>
+        <div class="card-body">
+            <p>
+                Build a simple shopping cart that handles volume discounts as a class library with an accompanying test project.<br />
+
+                Language: C#<br />
+
+                Framework: .NET Core 3.1 or later<br />
+
+                Expected time to complete: less than two hours.<br />
+            </p>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h3">Introduction</h1>
+        </div>
+        <div class="card-body">
+
+            <p>
+
+
+                Consider a store where items have prices per unit but also volume discount prices. For example, apples may be $1.00 each or 4 for $3.00.<br />
+
+                Implement a shopping cart that accepts an arbitrary ordering of products (similar to what would happen at a checkout line) 
+                and then returns the correct total price for an entire shopping cart.
+
+            </p>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h3">Pricing List</h1>
+        </div>
+        <div class="card-body">
+
+            Here are the products listed by code and the prices to use (there is no sales tax):<br />
+
+            | Product Code | Price           |<br />
+            | :----------- | --------------- |<br />
+            | A | $2.00 each or 4 for $7.00  |<br />
+            | B | $12.00                     |<br />
+            | C | $1.25 or $6 for a six pack |<br />
+            | D | $0.15                      |<br />
+        </div>
+    </div>
+</section>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h3">Requirements</h1>
+        </div>
+        <div class="card-body">
+            There should be a top level point of sale object that implements the following `ITerminal` interface. 
+            You are free to design, implement, and add to the interface code however you wish. 
+            You are free to determine how you will specify the prices in the system:
+
+            ```csharp<br />
+            <code>
+                public interface ITerminal<br />
+                {<br />
+                void Scan(string item);<br />
+                decimal Total();<br />
+                }<br />
+            </code> 
+            ```
+        </div>
+    </div>
+</section>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h3">Rules</h1>
+        </div>
+        <div class="card-body">
+            Here are the minimal inputs you should use for your test cases. These test cases must be shown to work in your program:<br />
+
+            Scan these items in this order: ABCDABAA; Verify the total price is $32.40.<br />
+
+            Scan these items in this order: CCCCCCC; Verify the total price is $6.00.<br />
+
+            Scan these items in this order: ABCD; Verify the total price is $15.40.<br />
+        </div>
+    </div>
+</section>
