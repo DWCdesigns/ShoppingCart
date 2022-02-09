@@ -58,5 +58,17 @@ namespace ShoppingCart.Pages
 
             return Page();
         }
+        public async Task<IActionResult> OnPostEmptyCartAsync()
+        {
+            // Add selected items to list
+            string selected = Request.Form["cart.SelectedList"].ToString();
+            
+            //Let terminal calculate new total and display on the page
+            cart.Total = 0.00m;
+            cart.SelectedList = "";
+            Items = _terminal.items;
+
+            return Page();
+        }
     }
 }
