@@ -3,9 +3,7 @@
 This branch was created after 3 hours of working on the assignment. 
 
 # Questions
-The unanswered questions are:
-
--Is the CCCCCC test case answer supposed to be $6.00 instead of the $7.25 in the documentation?
+The unanswered question is:
 
 -Is it the original git supposed to be branchable? I wasn't able to push my branch through process I normally use.
 
